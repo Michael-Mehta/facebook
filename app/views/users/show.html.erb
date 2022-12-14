@@ -1,0 +1,28 @@
+<% if current_user %>
+
+<p>Logged in as</p> <%= current_user.username %>
+<%= link_to "log out", destroy_user_session_path, method: :delete %>
+<% else %>
+<%= link_to "log in", new_user_session_path %>
+<% end %>
+
+<% if current_user.id == @user.id %>
+
+<%= redirect_to root_path %>
+
+<% else %>
+<br>
+
+<%= @user.email %>
+
+<br>
+
+<% if current_user.following?(@user) %>
+<%= button_to "Unfriend", unfriend_path(@user) %>
+<% elsif current_user.sent_follow_request_to?(@user) %>
+<%= button_to "Cancel Friend Request", cancel_path(@user) %>
+<% else %>
+<%= button_to "Friend", follow_path(@user) %>
+
+<% end %>
+<% end %>

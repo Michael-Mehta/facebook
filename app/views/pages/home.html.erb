@@ -1,0 +1,23 @@
+<h1>Home Page</h1>
+
+
+<% if current_user %>
+  <p>Logged in as <%= current_user.email %></p>
+  <%= link_to(destroy_user_session_path, {:class => "nav-link", :method => :delete}) do  %>
+    <span class="sidebar-normal"> Logout </span>
+<% end %>
+  <br />
+  <% current_user.follow_requests.each do |request| %>
+    <%= request.followerable.username %> wants to follow you
+    <%= button_to "Accept", accept_path(request.followerable) %>
+    <%= button_to "Decline", decline_path(request.followerable) %>
+  <% end %>
+  <hr />
+  <% current_user.followers.each do |user| %>
+    <%= link_to user.username, users_path(user) %> is friends with you
+    <%= button_to "Unfriend", unfriend_path(user) %>
+  <% end %>
+<% else %>
+  <p>Please sign in to view the rest of your home page</p>
+  <%= link_to "Log in", new_user_session_path %>
+<% end %>
