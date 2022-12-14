@@ -3,6 +3,6 @@ class PagesController < ApplicationController
     def home 
     end
 
-    def requests
+    def friends
     end
 end

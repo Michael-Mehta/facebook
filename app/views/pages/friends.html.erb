@@ -1,0 +1,10 @@
+<h1>My Friends</h1>
+
+<br>
+
+<% if current_user %>
+  <% current_user.followers.each do |user| %>
+    <%= link_to user.username, users_path(user) %> is friends with you
+    <%= button_to "Unfriend", unfriend_path(user) %>
+  <% end %>
+  <% end %>
