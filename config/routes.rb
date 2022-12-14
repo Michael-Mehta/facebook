@@ -12,7 +12,7 @@ Rails.application.routes.draw do
    post 'users/:id/cancel', to: 'users#cancel', as: 'cancel'
    
    get 'users/:id', to: 'users#show', as: 'users'
-
+   resources :pages
    resources :users
   
    root 'pages#home'

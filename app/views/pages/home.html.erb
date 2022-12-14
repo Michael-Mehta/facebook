@@ -7,12 +7,8 @@
     <span class="sidebar-normal"> Logout </span>
 <% end %>
   <br />
-  <% current_user.follow_requests.each do |request| %>
-    <%= request.followerable.username %> wants to follow you
-    <%= button_to "Accept", accept_path(request.followerable) %>
-    <%= button_to "Decline", decline_path(request.followerable) %>
-  <% end %>
-  <hr />
+  
+
   <% current_user.followers.each do |user| %>
     <%= link_to user.username, users_path(user) %> is friends with you
     <%= button_to "Unfriend", unfriend_path(user) %>

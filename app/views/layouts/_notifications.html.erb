@@ -1,0 +1,24 @@
+<% if current_user %>
+
+  <li class="nav-item dropdown">
+  
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+   
+
+    <span class="badge rounded-pill bg-danger">
+        
+    <i class="bi bi-bell-fill"></i>
+      </span>
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+    
+    
+    <% current_user.follow_requests.each do |request| %>
+        <%= request.followerable.username %> wants to friend you
+        <%= button_to "Accept", accept_path(request.followerable) %>
+        <%= button_to "Decline", decline_path(request.followerable) %>
+      <% end %>
+
+    </ul>
+    <% end %>
