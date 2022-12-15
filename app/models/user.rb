@@ -8,6 +8,7 @@ class User < ApplicationRecord
  followability
 
  has_many :notifications, as: :recipient, dependent: :destroy
+ has_many :posts, foreign_key: :user_id, dependent: :destroy
   
   def unfollow(user)
     followerable_relationships.where(followable_id: user.id).destroy_all

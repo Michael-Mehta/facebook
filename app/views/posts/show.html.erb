@@ -1,0 +1,11 @@
+<div>
+<div>
+<% if user_signed_in? %>
+
+By <%= @post.user.username%></h1>
+<% end %>
+</div>
+<div>
+<p> <%= @post.body %> </p>
+</div>
+</div>

@@ -7,6 +7,10 @@
 <% if current_user %>
 
 <h1> My Posts </h1>
+
+<%= link_to 'Create a Post', new_post_path %>
+
+<%= render "posts/my_posts" %>
   
 <% else %>
   <p>Please sign in to view the rest of your home page</p>

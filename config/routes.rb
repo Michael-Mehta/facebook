@@ -15,6 +15,7 @@ Rails.application.routes.draw do
    get 'users/:id', to: 'users#show', as: 'users'
    resources :pages
    resources :users
+   resources :posts
   
    root 'pages#home'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
