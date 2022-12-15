@@ -1,4 +1,4 @@
-<% current_user.posts.each do |p|%>
+<% Post.all.order(created_at: :desc).each do |p|%>
     <div class='big-tile'>
       <div class='tile'>
         <% if user_signed_in? %>
