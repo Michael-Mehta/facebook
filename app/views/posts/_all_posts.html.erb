@@ -1,15 +1,23 @@
 <% Post.all.order(created_at: :desc).each do |p|%>
-    <div class='big-tile'>
-      <div class='tile'>
+    
         <% if user_signed_in? %>
          <strong>@<%= p.user.username %></strong>
         <% end %>
         
         <p><em><%= p.body %></em></p>
-      </div>
-      <div class='show'>
+        
+        
+        <% pre_like = p.likes.find { |like| like.user_id == current_user.id} %>
+        <% if pre_like %>
+          <%= button_to 'Unlike', post_like_path(p, pre_like), method: :delete %>
+        <% else %>
+          <%= button_to 'Like', post_likes_path(p), method: :post %>
+        <% end %>
+
+        <%= p.likes.count %> Likes
+       
           <%= link_to 'View Post', p%>
-      </div>
-    </div>
+  
+   
   <% end %>
 </div>

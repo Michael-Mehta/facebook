@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
-   
+  
+
+  resources :posts do
+    resources :likes
+  end
    post 'users/:id/unfriend', to: 'users#unfriend', as: 'unfriend'
    post 'users/:id/friend', to: 'users#friend', as: 'follow'
    post 'users/:id/accept', to: 'users#accept', as: 'accept'
@@ -16,6 +20,7 @@ Rails.application.routes.draw do
    resources :pages
    resources :users
    resources :posts
+   
   
    root 'pages#home'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
