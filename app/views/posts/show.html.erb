@@ -16,4 +16,38 @@ By <%= @post.user.username%></h1>
 <% else %>
   <%= button_to 'Like', post_likes_path(@post), method: :post %>
 <% end %>
+
+
+<br>
+
+<h2>Add a comment:</h2>
+<%= form_with model: [ @post, Comment.new ] do |form| %>
+   
+  <p>
+
+
+    
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<br>
+
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.user.username %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+
 </div>

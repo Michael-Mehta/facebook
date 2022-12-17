@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :likes
+    resources :comments
+    resources :users
   end
+
+  
    post 'users/:id/unfriend', to: 'users#unfriend', as: 'unfriend'
    post 'users/:id/friend', to: 'users#friend', as: 'follow'
    post 'users/:id/accept', to: 'users#accept', as: 'accept'
