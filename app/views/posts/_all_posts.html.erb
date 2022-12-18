@@ -1,8 +1,9 @@
 <% Post.all.order(created_at: :desc).each do |p|%>
     
         <% if user_signed_in? %>
+        <% if current_user.following?(p.user) || current_user == p.user%>
          <strong>@<%= p.user.username %></strong>
-        <% end %>
+        
         
         <p><em><%= p.body %></em></p>
         
@@ -20,5 +21,7 @@
   
    <br>
    <br>
+   <% end %>
+   <% end %>
   <% end %>
 </div>
