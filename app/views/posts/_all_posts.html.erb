@@ -2,6 +2,7 @@
     
         <% if user_signed_in? %>
         <% if current_user.following?(p.user) || current_user == p.user%>
+        <%= image_tag avatar_url_for(p.user,32), class: "rounded-circle m-4" %>
          <strong>@<%= p.user.username %></strong>
         
         

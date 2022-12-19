@@ -4,6 +4,7 @@
 
 <% if current_user %>
   <% current_user.followers.each do |user| %>
+    <%= image_tag avatar_url_for(user,24), class: "rounded-circle mr-1" %>
     <%= link_to user.username, users_path(user) %> is friends with you
     <%= button_to "Unfriend", unfriend_path(user) %>
   <% end %>

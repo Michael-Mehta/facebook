@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
  followability
 
-
+ has_one_attached :avatar
  has_many :notifications, as: :recipient, dependent: :destroy
  has_many :posts, foreign_key: :user_id, dependent: :destroy
  has_many :likes, dependent: :destroy

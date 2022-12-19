@@ -2,7 +2,9 @@
 <div>
 <% if user_signed_in? %>
 
-By <%= @post.user.username%></h1>
+By <%= @post.user.username%>
+<%= image_tag avatar_url_for(@post.user, 32), class: "rounded-circle m-4" %>
+</h1>
 <% end %>
 </div>
 <div>
