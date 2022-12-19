@@ -43,6 +43,7 @@ By <%= @post.user.username%>
 <% @post.comments.each do |comment| %>
   <p>
     <strong>Commenter:</strong>
+    <%= image_tag avatar_url_for(comment.user, 32), class: "rounded-circle m-4" %>
     <%= comment.user.username %>
   </p>
 

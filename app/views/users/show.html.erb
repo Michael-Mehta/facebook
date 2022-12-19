@@ -13,6 +13,8 @@
       
       
       <h1><%= @user.username %></h1>
+      <br>
+      <h3><%= @user.bio %></h3>
 
       <br>
 
@@ -74,11 +76,14 @@
 <% else %>
 <br>
 
-<%= @user.username %>
+<h1><%= @user.username %></h1>
 
 <br>
 
 <% if current_user.following?(@user) %>
+
+<h3><%= @user.bio %></h3>
+<br>
 <%= button_to "Unfriend", unfriend_path(@user) %>
 <% elsif current_user.sent_follow_request_to?(@user) %>
 <%= button_to "Cancel Friend Request", cancel_path(@user) %>
@@ -86,4 +91,36 @@
 <%= button_to "Friend", follow_path(@user) %>
 
 <% end %>
+
+<br/>
+
+<% @user.posts.each do |p|%>
+  <div class='big-tile'>
+    <div class='tile'>
+      
+       <strong>@<%= p.user.username %></strong>
+      
+      
+      <p><em><%= p.body %></em></p>
+
+      <%= p.likes.count %> Likes
+      <% like = @user.likes.find_by(post: p) %>
+      <% if like.nil?%>
+      <form action = "/likes" method = "post">
+<input type = "hidden" name = "authenticity_token" value = "<%= form_authenticity_token %>">
+<input type = "hidden" name = "like[post_id]" value = "<%= p.id %>">
+<input type = "submit" value = "Like">
+</form>
+      <% else %>
+
+      <form action = "<% like_path(like) %>" method = "post">
+      <input type = "hidden" name = "authenticity_token" value = "<%= form_authenticity_token %>">
+      <input type = "hidden" name = "_method" value = " DELETE ">
+      <input type = "submit" value = "Unlike">
+      </form>
+
+      <% end %>
+      <%= link_to 'View Post', p%>
+      <% end %>
+    </div>
 <% end %>
