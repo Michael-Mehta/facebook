@@ -8,22 +8,32 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href= "/">Home</a>
+        <li class = "nav-item">
+        <%= link_to root_path do %>
+          Home
+        <% end %>
         </li>
 
-        <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href= "users/<%= current_user.id %>"  >Profile</a>
-      </li>
+        <li class = "nav-item">
+        <%= link_to users_path(current_user.id) do %>
+          profile
+        <% end %>
+        </li>
 
-        <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/pages/friends"><i class="bi bi-people"></i></a>
-      </li>
 
-      <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/users"><i class="bi bi-globe2"></i></a>
-    </li>
-        
+        <li class = "nav-item">
+        <%= link_to pages_friends_path do %>
+          <i class="bi bi-people-fill"></i>
+        <% end %>
+        </li>
+
+        <li class = "nav-item">
+        <%= link_to all_users_path do %>
+          <i class="bi bi-globe2"></i>
+        <% end %>
+        </li>
+
+      
         
       </ul>
       <ul class="navbar-nav" >

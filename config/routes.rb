@@ -21,6 +21,7 @@ Rails.application.routes.draw do
    
    get '/pages/friends'
    get 'users/:id', to: 'users#show', as: 'users'
+   get '/users', to: 'users#index', as: 'all_users'
    resources :pages
    resources :users
    resources :posts
