@@ -5,7 +5,7 @@
 <br>
 <% @users.each do |user|%>
     
-        <% if current_user.following?(user) || current_user == user%>
+        <% if current_user.following?(user) || current_user == user || current_user.sent_follow_request_to?(user)%>
          <% else %>
          <%= image_tag avatar_url_for(user,32), class: "rounded-circle m-4" %>
          <strong>@<%= user.username %></strong>
