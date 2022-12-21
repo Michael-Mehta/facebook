@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   devise :omniauthable, omniauth_providers: %i[facebook]
+  
+  after_create :send_welcome_email
 
 
   def self.from_omniauth(auth)
@@ -27,6 +29,11 @@ class User < ApplicationRecord
       end
     end
   end
+
+  
+def send_welcome_email
+    UserMailer.welcome_email(self).deliver_now  
+end
 
  followability
  
